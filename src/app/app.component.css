@@ -1,0 +1,4 @@
+.router-outlet-container {
+    min-height: calc(100vh - 380px - 200px);
+    padding: 20px;
+}

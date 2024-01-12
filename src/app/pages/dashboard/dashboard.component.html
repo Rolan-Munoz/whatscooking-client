@@ -1,0 +1,7 @@
+<p>dashboard works!</p>
+<p *ngIf="userLoginOn">usuario registrado</p>
+<p *ngIf="!userLoginOn">usuario registrado</p>
+<div *ngIf="userLoginOn">
+    <p>nombre {{userData?.name}}</p>
+    <p>email {{userData?.email}}</p>
+</div>
