@@ -1,7 +1,14 @@
-<p>dashboard works!</p>
-<p *ngIf="userLoginOn">usuario registrado</p>
-<p *ngIf="!userLoginOn">usuario registrado</p>
+
 <div *ngIf="userLoginOn">
-    <p>nombre {{userData?.name}}</p>
-    <p>email {{userData?.email}}</p>
+    <p>nombre {{user?.name}}</p>
+    <p>email {{user?.email}}</p>
+    <p>photo {{user?.photo}}</p>
 </div>
+<div *ngFor="let recipe of user?.recipes">
+    <h2>{{ recipe.tittle }}</h2>
+    <p>{{ recipe.description }}</p>
+    <p><strong>Ingredientes:</strong> {{ recipe.ingredients.join(', ') }}</p>
+    <p><strong>Instrucciones:</strong> {{ recipe.instructions }}</p>
+</div>
+
+

@@ -13,14 +13,14 @@
                     <a class="nav-link" aria-current="page" routerLink="/recipes">Recetas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" routerLink="/dashboard">Perfil</a>
+                    <a class="nav-link" aria-current="page" *ngIf="userLoginOn" routerLink="/dashboard">Bienvenido {{user?.name}} </a>
                 </li>
                 <li class="nav-item" *ngIf="!userLoginOn">
                     <a class="nav-link" aria-current="page" routerLink="/login">Iniciar Sesion</a>
                 </li>
                 <li class="nav-item" 
                 *ngIf="userLoginOn">
-                    <a class="nav-link" aria-current="page" href="#">Cerrar Sesion</a>
+                    <a class="nav-link" aria-current="page" (click)="logout()" href="#">Cerrar Sesion</a>
                 </li>
             </ul>
         </div>

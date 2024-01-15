@@ -1,7 +1,6 @@
-{  
-    "message":"Autenticación ok",
-    "id": "1",
-    "name":"rolan",
-    "lastName":"muñoz",
-    "email":"rolan@gmail.com"
+{
+    "name": "user006",
+    "email": "user006@example.com",
+    "password": "1234",
+    "role": "ADMIN"
 }

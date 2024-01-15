@@ -11,7 +11,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { RecipesComponent } from './pages/recipes/recipes.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptorServiceService } from './services/auth/jwt-interceptor-service.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorServiceService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
