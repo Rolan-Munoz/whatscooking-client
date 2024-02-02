@@ -1,9 +1,9 @@
 export interface Recipe {
-    id_recipe: number;
+    id: number;
     tittle: string;
     ingredients: string[];
     description: string;
     instructions: string;
-    image: any; 
-    video: any;
+    image?: any; // Este campo es opcional
+    video?: any; // Este campo es opcional
 }

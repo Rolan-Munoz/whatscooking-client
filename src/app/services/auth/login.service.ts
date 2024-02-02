@@ -35,11 +35,16 @@ export class LoginService {
         this.currentUserLoginOn.next(true);
         const decodedToken = jwtDecode(token) as CustomJwtPayload;
         const userId = decodedToken.id;
-
+  
         if (userId) {
           this.userService.getUser(userId).subscribe({
             next: (userData) => {
-              localStorage.setItem('user', JSON.stringify(userData));
+              const minimalUserData = {
+                id: userData.id,
+                name: userData.name
+                // Agrega aquí cualquier otro campo que necesites
+              };
+              localStorage.setItem('user', JSON.stringify(minimalUserData));
             }
           })
         }
@@ -47,6 +52,7 @@ export class LoginService {
       catchError(this.handleError)
     );
   }
+  
   
 
 

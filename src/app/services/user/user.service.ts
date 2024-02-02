@@ -17,12 +17,15 @@ export class UserService {
     )
   }
 
-  private handleError(error:HttpErrorResponse) {
-    if(error.status===0) {
-      console.error('se ha producido un error ', error.error );
-    }else{
-      console.error('Error de backend : ', error.status, error.error);
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
     }
-    return throwError(()=> new Error("Algo no funciono correctamente, por favor iontentelo de nuevo"));
+    return throwError(
+      'Something bad happened; please try again later.');
   }
 }

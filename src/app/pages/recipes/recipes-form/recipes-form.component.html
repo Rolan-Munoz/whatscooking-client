@@ -1,0 +1,56 @@
+<form [formGroup]="recipeForm" class="m-2">
+    <p class="text-danger">{{recipeError}}</p>
+    <div class="mb-3">
+        <label for="recipeTitle" class="form-label">Título de la receta</label>
+        <input formControlName="tittle" type="text" class="form-control" id="recipeTitle">
+        <div *ngIf="recipeForm.get('tittle')?.invalid && (recipeForm.get('tittle')?.dirty || recipeForm.get('tittle')?.touched)"
+            class="text-danger">
+            <div *ngIf="recipeForm.get('tittle')?.errors?.['required']">
+            Título requerido
+            </div>
+        </div>
+    </div>
+    <div formArrayName="ingredients">
+        <div *ngFor="let ingredient of ingredients.controls; index as i">
+            <label for="recipeIngredient{{i}}" class="form-label">Ingrediente {{i + 1}}</label>
+            <input [formControlName]="i" type="text" class="form-control" id="recipeIngredient{{i}}">
+            <div *ngIf="ingredient.invalid && (ingredient.dirty || ingredient.touched)"
+                class="text-danger">
+                <div *ngIf="ingredient.errors?.['required']">
+                Ingrediente requerido
+                </div>
+            </div>
+            <button type="button" (click)="removeIngredient(i)">Eliminar ingrediente</button>
+        </div>
+        <button type="button" (click)="addIngredient()">Agregar ingrediente</button>
+    </div>
+    <div class="mb-3">
+        <label for="recipeDescription" class="form-label">Descripción de la receta</label>
+        <textarea formControlName="description" class="form-control" id="recipeDescription"></textarea>
+        <div *ngIf="recipeForm.get('description')?.invalid && (recipeForm.get('description')?.dirty || recipeForm.get('description')?.touched)"
+            class="text-danger">
+            <div *ngIf="recipeForm.get('description')?.errors?.['required']">
+            Descripción requerida
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="recipeInstructions" class="form-label">Instrucciones de la receta</label>
+        <textarea formControlName="instructions" class="form-control" id="recipeInstructions"></textarea>
+        <div *ngIf="recipeForm.get('instructions')?.invalid && (recipeForm.get('instructions')?.dirty || recipeForm.get('instructions')?.touched)"
+            class="text-danger">
+            <div *ngIf="recipeForm.get('instructions')?.errors?.['required']">
+            Instrucciones requeridas
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="recipeImage" class="form-label">Imagen de la receta</label>
+        <input formControlName="image" type="file" class="form-control" id="recipeImage" (change)="onFileSelected($event, 'image')">
+    </div>
+    <div class="mb-3">
+        <label for="recipeVideo" class="form-label">Video de la receta</label>
+        <input formControlName="video" type="file" class="form-control" id="recipeVideo" (change)="onFileSelected($event, 'video')">
+    </div>
+    <button type="submit" (click)="submitRecipe()" class="btn btn-primary">Crear Receta</button>
+</form>

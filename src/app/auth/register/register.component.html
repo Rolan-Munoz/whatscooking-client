@@ -1,0 +1,39 @@
+<form [formGroup]="registerForm" class="m-2">
+    <p class="text-danger">{{registerError}}</p>
+    <div class="mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input formControlName="name" type="text" class="form-control" id="name">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+            <div *ngIf="name.errors?.['required']">
+                Nombre requerido
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input formControlName="email" type="email" class="form-control" id="email">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+            <div *ngIf="email.errors?.['required']">
+                Email requerido
+            </div>
+            <div *ngIf="email.errors?.['email']">
+                Formato de email inválido
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input formControlName="password" type="password" class="form-control" id="password">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+            <div *ngIf="password.errors?.['required']">
+                Contraseña requerida
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="photo" class="form-label">Foto</label>
+        <input formControlName="photo" type="file" class="form-control" id="photo" (change)="onFileSelected($event, 'photo')">
+    </div>
+    
+    <button type="submit" (click)="register()" class="btn btn-primary">Registrarse</button>
+</form>

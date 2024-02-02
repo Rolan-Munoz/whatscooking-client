@@ -1,0 +1,13 @@
+
+
+.card {
+    height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
+    width: 100%;
+}
+.card-img-top {
+    height: 200px; /* Asegura que todas las imágenes tengan la misma altura */
+    object-fit: cover; /* Asegura que las imágenes se redimensionen correctamente */
+}
+.card-body {
+    text-align: center; /* Centra el texto del título y la descripción */
+}

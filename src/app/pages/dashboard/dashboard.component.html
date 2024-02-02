@@ -1,14 +1,20 @@
-
-<div *ngIf="userLoginOn">
-    <p>nombre {{user?.name}}</p>
-    <p>email {{user?.email}}</p>
-    <p>photo {{user?.photo}}</p>
-</div>
-<div *ngFor="let recipe of user?.recipes">
-    <h2>{{ recipe.tittle }}</h2>
-    <p>{{ recipe.description }}</p>
-    <p><strong>Ingredientes:</strong> {{ recipe.ingredients.join(', ') }}</p>
-    <p><strong>Instrucciones:</strong> {{ recipe.instructions }}</p>
+<div *ngIf="userLoginOn" class="d-flex align-items-center">
+    <img [src]="'data:image/jpeg;base64,' + user?.photo" alt="Foto del usuario" style="width: 100px; height: 100px; border-radius: 50%;">
+    <div class="ml-3">
+        <p><strong>Nombre:</strong> {{user?.name}}</p>
+        <p><strong>Email:</strong> {{user?.email}}</p>
+    </div>
 </div>
 
+<p class="mt-3">Crea una nueva <a routerLink="/recipesForm">Receta</a></p>
 
+<div *ngFor="let recipe of user?.recipes" class="row mb-3">
+    <div class="col-sm-12 col-md-4">
+        <img [src]="'data:image/jpeg;base64,' + recipe?.image" alt="Imagen de la receta" style="width: 100px; height: 100px;">
+    </div>
+    <div class="col-sm-12 col-md-8">
+        <h2>{{ recipe.tittle }}</h2>
+        <p>{{ recipe.description }}</p>
+        <a [routerLink]="['/recipeDetails', recipe?.id]">Ver detalles</a>
+    </div>
+</div>
