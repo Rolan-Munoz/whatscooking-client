@@ -1,0 +1,27 @@
+.card img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%; /* Hace que la imagen sea más grande, del tamaño del botón */
+    height: auto;
+    margin-bottom: 20px; /* Añade margen debajo de la imagen para separarla del botón */
+}
+
+.card {
+    border: none;
+}
+
+.card-subtitle {
+    text-align: center; /* Centra los títulos */
+    font-size: larger; /* Hace que los títulos sean un poco más grandes que los párrafos */
+    font-weight: bold; /* Hace que los títulos estén en negrita */
+    color: black;
+}
+
+.card-title {
+    text-align: center; /* Centra los títulos */
+    font-size: 30px; /* Aumenta el tamaño del título principal */
+    font-weight: bold; /* Hace que los títulos estén en negrita */
+    text-transform: uppercase;
+}
+

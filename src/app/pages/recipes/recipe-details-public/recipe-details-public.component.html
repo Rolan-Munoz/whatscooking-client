@@ -1,27 +1,25 @@
+
+
 <div class="card col-lg-6 col-12 mx-auto">
-    <h4 class="card-title text-center" style="text-transform: uppercase; font-size: larger;">{{recipe?.tittle}}</h4>
-    <div class="row">
-        <div class="col-sm-12 col-md-6">
-            <ng-container *ngIf="recipe?.image">
-                <img class="card-img-top img-fluid" [src]="'data:image/jpeg;base64,' + recipe?.image" alt="Imagen de la receta" style="max-width: 300px; max-height: 200px;">
-            </ng-container>
-        </div>
-        
-        <div class="col-sm-12 col-md-6">
-            <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Ingredientes</h6>
-                <ul>
-                    <li *ngFor="let ingredient of recipe?.ingredients">{{ingredient}}</li>
-                </ul>
-            </div>
-        </div>
+    <h4 class="card-title text-center my-5">{{recipe?.tittle}}</h4>
+    <ng-container *ngIf="recipe?.image">
+        <img class="card-img-top img-fluid" [src]="'data:image/jpeg;base64,' + recipe?.image" alt="Imagen de la receta">
+    </ng-container>
+    <button class="btn btn-primary" *ngIf="user" (click)="toggleFavorite()">
+        {{isFavorite ? 'Remover de favoritos' : 'Añadir a favoritos'}}
+    </button>
+    <div class="card-body">
+        <h6 class="card-subtitle mb-5">Ingredientes</h6>
+        <ul class="list-unstyled row">
+            <li *ngFor="let ingredient of recipe?.ingredients; index as i" [class]="i % 2 === 0 ? 'col-6' : 'col-6'">{{ingredient}}</li>
+        </ul>
     </div>
     <div class="card-body text-center">
-        <h6 class="card-subtitle mb-2 text-muted">Descripción</h6>
+        <h6 class="card-subtitle mb-5">Descripción</h6>
         <p class="card-text">{{recipe?.description}}</p>
     </div>
     <div class="card-body text-center">
-        <h6 class="card-subtitle mb-2 text-muted">Instrucciones</h6>
+        <h6 class="card-subtitle mb-5">Instrucciones</h6>
         <p class="card-text">{{recipe?.instructions}}</p>
     </div>
     <div class="card-body d-flex justify-content-center" *ngIf="recipe?.video">
@@ -29,8 +27,41 @@
             Tu navegador no soporta la etiqueta de video.
         </video>
     </div>
-    
+    <button *ngIf="isAdmin(user) || user?.id === recipe?.userId" (click)="recipe && recipe.id && deleteRecipe(recipe.id, recipe.userId)">Borrar receta</button>
+
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal">
+        Añadir comentario
+    </button>
+    <div class="card-body" *ngFor="let comment of comments">
+        <p class="card-text">{{comment?.text}}</p> 
+        <small class="text-muted">{{comment?.date | date}}</small>
+        <button *ngIf="isAdmin(user) || user?.id === comment.userId" (click)="deleteComment(comment.id, comment.userId)">Borrar comentario</button>
+    </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commentModalLabel">Nuevo comentario</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <textarea #commentContent class="form-control" id="comment" rows="3"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="addComment(commentContent.value)">Guardar comentario</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 

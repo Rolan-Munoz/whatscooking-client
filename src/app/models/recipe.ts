@@ -4,6 +4,7 @@ export interface Recipe {
     ingredients: string[];
     description: string;
     instructions: string;
+    userId: number;
     image?: any; // Este campo es opcional
     video?: any; // Este campo es opcional
 }

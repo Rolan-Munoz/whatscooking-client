@@ -35,7 +35,7 @@ import { RecipeDetailsPublicComponent } from './pages/recipes/recipe-details-pub
     RegisterComponent,
     RecipesFormComponent,
     RecipeDetailsComponent,
-    RecipeDetailsPublicComponent,
+    RecipeDetailsPublicComponent
   ],
   imports: [
     BrowserModule,

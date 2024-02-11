@@ -1,0 +1,35 @@
+.user-data img {
+    margin-right: 10px;
+}
+
+.created-recipes {
+    margin-bottom: 20px;
+    background-color: #e6e2e2; /* Gris claro */
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.favorite-recipes {
+    margin-bottom: 20px;
+    margin-left: 20px; /* Separación de Mis Recetas */
+}
+
+.card img {
+    object-fit: cover;
+    max-width: 90%; /* Para "Mis Recetas" */
+    height: auto;
+}
+
+.favorite-recipes .card img {
+    max-width: 75%; /* Para "Favoritas" */
+}
+
+.card {
+    cursor: pointer;
+    overflow: hidden;
+    height: auto; /* Para que el card sea más delgado */
+}
+
+.card-body {
+    padding: 0.5rem; /* Para que la foto y el texto estén más juntos */
+}

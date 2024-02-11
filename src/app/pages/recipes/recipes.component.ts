@@ -22,7 +22,7 @@ export class RecipesComponent implements OnInit{
     this.loadPage(this.currentPage);
   }
   loadPage(page: number): void {
-    this.recipeService.getAllRecipes(page - 1, 12).subscribe(page => {
+    this.recipeService.getAllRecipes(page - 1, 6).subscribe(page => {
       this.recipes = page.content;
       this.totalRecipes = page.totalElements;
       this.totalPages = page.totalPages;
@@ -31,7 +31,7 @@ export class RecipesComponent implements OnInit{
 
   search(): void {
     if (this.searchTitle) {
-        this.recipeService.getRecipesByTitle(0, 10, this.searchTitle).subscribe(
+        this.recipeService.getRecipesByTitle(0, 6, this.searchTitle).subscribe(
             page => {
                 this.recipes = page.content;
                 this.totalRecipes = page.totalElements;

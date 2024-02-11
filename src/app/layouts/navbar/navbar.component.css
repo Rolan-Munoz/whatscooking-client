@@ -1,6 +1,7 @@
 .navbar {
     height: 80px;
     background-color: black;
+    z-index: 1000;
 }
 .navbar-collapse {
     background-color: black; 

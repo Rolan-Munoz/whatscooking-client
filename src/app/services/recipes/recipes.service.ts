@@ -48,6 +48,21 @@ export class RecipesService {
     }
   }
 
+  deleteRecipe(recipeId: number): Observable<any> {
+    const token = sessionStorage.getItem('token');
+    if (token !== null) {
+        const decodedToken = jwtDecode(token) as unknown as CustomJwtPayload;
+        const userId = decodedToken.id;
+        return this.http.delete<any>(`${environment.urlApi}users/${userId}/recipes/${recipeId}/remove`);
+    } else {
+        // Maneja el caso en que el token es null
+        // Puedes lanzar un error o redirigir al usuario a la página de inicio de sesión
+        throw new Error('Token no encontrado');
+    }
+}
+
+
+
   getRecipeById(recipeId: number): Observable<Recipe> {
     return this.http.get<Recipe>(`${environment.urlApi}recipes/${recipeId}`)
   }
@@ -60,12 +75,7 @@ export class RecipesService {
     return this.http.get<Page<Recipe>>(environment.urlApi + "recipes/tittle/" + title, {params: params}).pipe(
         catchError(this.handleError)
     )
-}
-
-
-  
-  
-  
+}  
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
